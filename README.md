@@ -47,5 +47,5 @@ command with the `-M` flag if you're at the middle of a month.
 
 The `scripts/registert` file runs `ledger register` with the `"tag()"` query
 set. All arguments are placed within the query. We mostly use this to aggregate
-entries that are tagged in a particular way that cater well into the description
-or the category for the entry.
+entries that are tagged in a particular way that don't cater well into the
+description or the category for the entry.
