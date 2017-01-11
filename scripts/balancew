@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+BALANCE_PATH="$(dirname $0)/balance"
+
+watch --color "$BALANCE_PATH \^Assets Credit"
