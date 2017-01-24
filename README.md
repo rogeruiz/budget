@@ -1,7 +1,9 @@
 Budget
 ---
 
-A collection of ledger-cli scripts we use to balance our family budget.
+A collection of [ledger-cli][] scripts we use to balance our family budget.
+
+[ledger-cli]: http://ledger-cli.org "Ledger is a powerful, double-entry accounting system that is accessed from the UNIX command-line."
 
 ## Usage
 
