@@ -30,6 +30,12 @@ The `scripts/balancew` file watches at a two-second interval for any changes to
 the ledger file. It also is hard-coded to only look at the `Assets` and
 `Liabilities:Credit` categories which we use to consider our debt ratio.
 
+#### Balances
+
+The `scripts/balancess` file reports out the same categories that Balance watch
+reports but without the actual watching. Useful when you want to leave a
+snapshot up on the screen when you step away from ledger for a little while.
+
 #### Register
 
 The `scripts/register` file is a simple wrapper around the `ledger register`

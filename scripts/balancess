@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+clear
+echo "Balance Snapshot"
+echo "for Assets, Funds, and Credit"
+echo
+./balance "\^Assets" "Credit" "Funds" --strict | more
