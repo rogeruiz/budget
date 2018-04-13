@@ -1,0 +1,21 @@
+#!/bin/bash
+
+file=$1
+ledger_dummy_file=$2
+tmp_file=$(mktemp)
+tmp_file_2=$(mktemp)
+tmp_file_3=$(mktemp)
+
+# Preprocess the CSV file
+sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/__/g' ${file} > ${tmp_file}
+tr -d '\r' < ${tmp_file} > ${tmp_file_2}
+cat ${tmp_file_2} | sed 's/"__"/"\
+"/g' > ${tmp_file_3}
+tr '__' ' ' < ${tmp_file_3} > ${tmp_file}
+sed 's/"(\$/"-$/'  ${tmp_file} > ${tmp_file_2}
+sed 's/)"/"/' ${tmp_file_2} > ${tmp_file_3}
+
+# Convert the processed CSV into Ledger format
+ledger convert ${tmp_file_3} --input-date-format "%m/%d/%Y" -f ${ledger_dummy_file} | \
+sed 's/\$-/$/' | \
+sed 's/Equity:Unknown/Assets:Checking/'

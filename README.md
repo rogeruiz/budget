@@ -57,3 +57,12 @@ The `scripts/registert` file runs `ledger register` with the `"tag()"` query
 set. All arguments are placed within the query. We mostly use this to aggregate
 entries that are tagged in a particular way that don't cater well into the
 description or the category for the entry.
+
+#### Convert
+
+The `scripts/convert` file runs `ledger convert` with some whitespace processing
+on the CSV file we download from our bank. The preprocessing removes newlines
+from the Description fields of the CSV file and is needed because ledger chokes
+on the newlines within it. This takes two arguments, `path/to/file.csv` and
+`path/to/file.ledger`. The latter is needed by `ledger convert` to process the
+CSV file.
