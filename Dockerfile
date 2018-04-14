@@ -13,6 +13,7 @@ RUN \
 RUN \
   git clone https://github.com/ledger/ledger /tmp/ledger && \
   cd /tmp/ledger && \
+  git checkout -b stable v3.1 && \
   git submodule update --init && \
   ./acprep make && \
   make check && \
