@@ -16,11 +16,13 @@ RUN \
   git checkout -b stable v3.1 && \
   git branch -u origin/master && \
   ./acprep update && \
+  make install && \
   cd / && \
   rm -rf /tmp/ledger
+
 
 ADD ./config/ledgerrc /root/.ledgerrc
 ADD ./scripts /root/
 
-ENTRYPOINT ["ledger"]
+ENTRYPOINT ["/usr/local/bin/ledger"]
 
