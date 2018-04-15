@@ -4,9 +4,4 @@ set -e
 
 REGISTER_PATH="$(dirname $0)/register"
 
-if [ -z $BUDGET_FILE ]; then
-  echo '$BUDGET_FILE not properly set. Please check your environment.'
-  exit 99
-fi
-
 $REGISTER_PATH "tag('$@')"

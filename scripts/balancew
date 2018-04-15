@@ -4,4 +4,8 @@ set -e
 
 BALANCE_PATH="$(dirname $0)/balance"
 
-watch --color "$BALANCE_PATH \^Assets Credit"
+if [ -z $BALANCE_WATCH_INTERVAL ]; then
+  BALANCE_WATCH_INTERVAL=1
+fi
+
+watch -n $BALANCE_WATCH_INTERVAL --color "$BALANCE_PATH \^Assets Credit"
