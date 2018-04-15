@@ -19,7 +19,7 @@ RUN \
   cd / && \
   rm -rf /tmp/ledger
 
-ADD ./.ledgerrc /root/.ledgerrc
+ADD ./config/ledgerrc /root/.ledgerrc
 ADD ./scripts /root/
 
 ENTRYPOINT ["ledger"]
