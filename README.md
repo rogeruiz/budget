@@ -88,6 +88,9 @@ command with the `-M` flag if you're at the middle of a month.
 cat example/file.ledger | docker run -i rogeruiz/ledger registerlm
 ```
 
+Note for the example you will probably have to modify the `file.ledger` to have
+a date that occurs in the last thirty days when you run it.
+
 #### Register tags
 
 The `scripts/registert` file runs `ledger register` with the `"tag()"` query
