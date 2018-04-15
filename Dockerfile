@@ -14,10 +14,8 @@ RUN \
   git clone https://github.com/ledger/ledger /tmp/ledger && \
   cd /tmp/ledger && \
   git checkout -b stable v3.1 && \
-  git submodule update --init && \
-  ./acprep make && \
-  make check && \
-  make install && \
+  git branch -u origin/master && \
+  ./acprep update && \
   cd / && \
   rm -rf /tmp/ledger
 
