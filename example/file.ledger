@@ -1,0 +1,220 @@
+; vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Accounts                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Income {
+account Income
+account Income:Gifts
+account Income:Fees
+account Income:Salary
+account Income:Contract
+account Income:Bonus
+account Income:Taxes:Federal
+account Income:Taxes:State
+account Income:Reimbursement
+; }
+
+; Assets:Funds {
+account Assets:Funds
+account Assets:Funds:Bills
+account Assets:Funds:Debt
+account Assets:Funds:Food
+account Assets:Funds:Home
+account Assets:Funds:Loans
+account Assets:Funds:Vacation
+account Assets:Funds:Recreation
+; }
+
+; Expenses {
+account Expenses:Education
+account Expenses:Entertainment
+account Expenses:Electronics
+account Expenses:Food:Groceries
+account Expenses:Food:Breakfast
+account Expenses:Food:Lunch
+account Expenses:Food:Dinner
+account Expenses:Home
+account Expenses:Home:Garbage
+account Expenses:Health
+account Expenses:Medical
+account Expenses:Stationary
+account Expenses:Subscription
+account Expenses:Recreation
+account Expenses:Taxes:Federal
+account Expenses:Taxes:State
+account Expenses:Travel
+account Expenses:Children
+account Expenses:Children:Toys
+; }
+
+; Liabilities {
+account Liabilities:Mortgage
+account Liabilities:Loan
+account Liabilities:Credit
+; }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Automated Transactions       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Income to funds {
+
+; All of these are coming out of a single paycheck so they're half of a month's
+; spending
+
+; House {
+= /Income:Salary/ and expr date >= [2018/01/01]
+  * Assets:Funds:Home   $90
+    ; House Cleaning
+  * Assets:Funds:Home   $50
+    ; Utilities
+  * Assets:Funds:Home   $50
+    ; Garbage services
+  * Assets:Checking    -$190
+; }
+
+; Debt {
+= /Income:Salary/ and expr date >= [2018/01/01]
+  * Assets:Funds:Debt   $50
+  * Assets:Checking    -$50
+; }
+
+; Car {
+= /Income:Salary/ and expr date >= [2018/01/01]
+  * Assets:Funds:Car    $40
+    ; Insurance
+  * Assets:Funds:Car    $25
+    ; Gas
+  * Assets:Checking    -$65
+;}
+
+
+; Food {
+= /Income:Salary/ and expr date >= [2018/01/01]
+  * Assets:Funds:Food   $600
+    ; Groceries
+  * Assets:Funds:Food   $200
+    ; Eating out
+  * Assets:Checking    -$800
+
+; }
+
+; }
+
+; Funds Withdrawals {
+
+= /Expenses:House:(Cleaning|Utilities|Maintenance)/ and expr date >= [2018/01/01]
+    * Assets:Checking           1.0
+    * Assets:Funds:Home        -1.0
+
+= /Expenses:Food:(Lunch|Breakfast|Snacks|Groceries|Dinner)/ and expr date >= [2018/01/01]
+    * Assets:Checking           1.0
+    * Assets:Funds:Food        -1.0
+
+= /Expenses:Subscriptions:(Phone|Digital)/ and expr date >= [2018/01/01]
+    * Assets:Checking              1.0
+    * Assets:Funds:Subscriptions  -1.0
+
+= /Expenses:Debt:Payment/ and expr date >= [2018/01/01]
+    * Assets:Checking           1.0
+    * Assets:Funds:Debt        -1.0
+
+= /Expenses:Health:(Therapy|Gym)/ and expr date >= [2018/01/01]
+    * Assets:Checking           1.0
+    * Assets:Funds:Health      -1.0
+
+= /Expenses:Car:(Insurance|Gas)/ and expr date >= [2018/01/01]
+    * Assets:Checking           1.0
+    * Assets:Funds:Car         -1.0
+
+; }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Transactions                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+2018/01/01 * Opening Balance
+    Assets:Checking                          $1,000
+    Equity:Opening Balances
+
+2018/01/02 * Paycheck
+    ; Balance: $2,500
+    Assets:Checking                        $1,500.00
+    Income:Salary
+
+2018/01/03 * POS Purchase @ 12:00
+    ; Balance: $2,468.77
+    ; Comments: Fast Food  Address  City State Zip
+    Expenses:Food:Lunch                      $31.23
+    Assets:Checking
+
+2018/01/03 * POS Purchase @ 13:35
+    ; Balance: $2,333.71
+    ; Comments: Supermarket  Address  City State Zip
+    Expenses:Food:Groceries                 $135.06
+    Assets:Checking
+
+2018/01/04 * Autopay @ 00:00
+    ; Balance: $2,322.72
+    ; Comments: Netflix  Address  City State Zip
+    Expenses:Subscriptions:Digital           $10.99
+    Assets:Checking
+
+2018/01/10 * POS Purchase @ 22:00
+    ; Balance: $2,316.56
+    ; Comments: 7-11  Address  City State Zip
+    Expenses:Cigarettes                       $6.16
+    Assets:Checking
+
+2018/01/20 * Autopay @ 00:00
+    ; Balance: $2,291.56
+    ; Comments: Credit Card Company  Address  City State Zip
+    Expenses:Debt:Payment                    $25.00
+    Assets:Checking
+
+2018/02/09 * POS Purchase @ 22:00
+    ; Balance: $2,222.27
+    ; Comments: Supermarket  Address  City State Zip
+    Expenses:Food:Groceries                  $69.29
+    Assets:Checking
+
+2018/02/19 * Autopay @ 00:00
+    ; Balance: $2,195.84
+    ; Comments: Insurance  Address  City State Zip
+    Expenses:Car:Insurance                   $26.43
+        ; :Cheap:
+    Assets:Checking
+
+2018/02/20 * POS Purchase @ 13:23
+    ; Balance: $2,165.84
+    ; Comments: Walkin Clinic  Address  City State Zip
+    Expenses:Health:Medical                  $30.00
+        ; :Copay:
+    Assets:Checking
+
+2018/03/09 * Online Purchase @ 08:56
+    ; Balance: $2,125.06
+    ; Comments: Amazon  Address  City State Zip
+    Expenses:House:Miscellaneous             $40.78
+    Assets:Checking
+
+2018/03/10 * Paper Check
+    ; Balance: $2,045.06
+    ; Check Number: 212
+    ; Comments: Cleaning Service  Address  City State Zip
+    Expenses:House:Cleaning                  $80.00
+    Assets:Checking
+
+2018/03/12 * Autopay @ 00:00
+    ; Balance: $2,030.07
+    ; Comments: Apple  Address  City State Zip
+    Expenses:Subscriptions:Digital           $14.99
+    Assets:Checking
+
+2018/04/01 * Autopay @ 00:00
+    ; Balance: $2,020.08
+    ; Comments: Microsoft  Address  City State Zip
+    Expenses:Subscriptions:Digital           $9.99
+    Assets:Checking
