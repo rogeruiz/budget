@@ -112,5 +112,5 @@ on the newlines within it. This takes two arguments, `path/to/file.csv` and
 CSV file.
 
 ```sh
-docker run -i -v $PWD/data:/data rogeruiz/ledger convert /data/example/file.csv /data/example/file.ledger
+docker run -i -v $PWD:/data rogeruiz/ledger convert /data/example/file.csv /data/example/file.ledger
 ```
