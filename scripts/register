@@ -2,10 +2,4 @@
 
 set -e
 
-if [ -z $BUDGET_FILE ]; then
-  file_flag=""
-else
-  file_flag="--file ${BUDGET_FILE}"
-fi
-
 ledger ${file_flag} register "$@"
