@@ -19,13 +19,22 @@ run these directly on your machine.
 
 ## Usage
 
-Leverage these scripts on your system directly or use the Docker image. The
-scripts are aware of a `${BUDGET_FILE}` environment variable to make running
-them easier and avoid having to pass a `--file` flag to Ledger.
+Leverage these scripts on your system directly or use the Docker image.
 
-If you use the Docker image, the `.ledgerrc` file included automatically sets
+When using the Docker image, the `.ledgerrc` file included automatically sets
 the `--file` flag to `STDIN` so you can pipe your ledger file into the `docker
 run` commands. The examples included below use this method.
+
+Create a similar file locally if you're using these scripts directly using the
+following command.
+
+```sh
+echo '--file -' > ~/.ledgerrc
+```
+
+Read more about the [Ledger resource file in the documentation][ldocs-rc].
+
+[ldocs-rc]: https://www.ledger-cli.org/3.0/doc/ledger3.html#Environment-variables
 
 ### Scripts
 
