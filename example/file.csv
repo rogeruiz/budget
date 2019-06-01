@@ -1,0 +1,38 @@
+"Date","Description","Comments","Check Number","Amount","Balance"
+"01/02/2018","Paycheck","","","$1,500","$2,500"
+"01/03/2018","POS Purchase @ 12:00","Fast Food
+Address
+City State Zip","","($31.23)","$2,468.77"
+"01/03/2018","POS Purchase @ 13:35","Supermarket
+Address
+City State Zip","","($135.06)","$2,333.71"
+"01/04/2018","Autopay @ 00:00","Netflix
+Address
+City State Zip","","($10.99)","$2,322.72"
+"01/10/2018","POS Purchase @ 22:00","7-11
+Address
+City State Zip","","($6.16)","$2,316.56"
+"01/20/2018","Autopay @ 00:00","Credit Card Company
+Address
+City State Zip","","($25.00)","$2,291.56"
+"02/09/2018","POS Purchase @ 22:00","Supermarket
+Address
+City State Zip","","($69.29)","$2,222.27"
+"02/19/2018","Autopay @ 00:00","Insurance
+Address
+City State Zip","","($26.43)","$2,195.84"
+"02/20/2018","POS Purchase @ 13:23","Walkin Clinic
+Address
+City State Zip","","($30.00)","$2,165.84"
+"03/09/2018","Online Purchase @ 08:56","Amazon
+Address
+City State Zip","","($40.78)","$2,125.06"
+"03/10/2018","Paper Check","Cleaning Service
+Address
+City State Zip","212","($80.00)","$2,045.06"
+"03/12/2018","Autopay @ 00:00","Apple
+Address
+City State Zip","","($14.99)","$2,030.07"
+"03/12/2018","Autopay @ 00:00","Microsoft
+Address
+City State Zip","","($9.99)","$2,020.08"

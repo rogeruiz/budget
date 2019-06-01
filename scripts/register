@@ -2,9 +2,4 @@
 
 set -e
 
-if [ -z $BUDGET_FILE ]; then
-  echo '$BUDGET_FILE not properly set. Please check your environment.'
-  exit 99
-fi
-
-ledger -f $BUDGET_FILE register "$@"
+ledger ${file_flag} register "$@"

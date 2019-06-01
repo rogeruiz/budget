@@ -4,11 +4,6 @@ set -e
 
 REGISTER_PATH="$(dirname $0)/register"
 
-if [ -z $BUDGET_FILE ]; then
-  echo '$BUDGET_FILE not properly set. Please check your environment.'
-  exit 99
-fi
-
-THIRTY_DAYS_AGO=$( date -v -30d "+%Y/%m/%d" )
+THIRTY_DAYS_AGO=$(date --date='30 days ago' "+%Y/%m/%d")
 
 $REGISTER_PATH --begin "$THIRTY_DAYS_AGO" "$@"

@@ -2,9 +2,4 @@
 
 set -e
 
-if [ -z $BUDGET_FILE ]; then
-  echo '$BUDGET_FILE not properly set. Please check your environment.'
-  exit 99
-fi
-
-ledger --no-total -f $BUDGET_FILE balance "$@"
+ledger --no-total ${file_flag} balance "$@"
