@@ -4,7 +4,7 @@
 <img width="250" src="https://user-images.githubusercontent.com/706004/38782280-0d68f35c-40bf-11e8-8ece-1d9b045ea9d7.gif" alt="flying money">
 </p>
 
-A collection of [ledger-cli][] scripts we use to balance our family budget.
+A collection of [ledger-cli][] scripts I use to balance my budget(s).
 
 [ledger-cli]: http://ledger-cli.org "Ledger is a powerful, double-entry accounting system that is accessed from the UNIX command-line."
 
