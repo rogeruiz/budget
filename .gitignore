@@ -1,3 +1,4 @@
 *.ledger
 !example/file.ledger
 .env
+tmp/
